@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-// Model pembungkus untuk menangani respon API berupa Object map {"teams": [...]} maupun List
+
 class PremierLeagueModel {
   List<Team> teams;
 
   PremierLeagueModel({required this.teams});
 
-  // dynamic json agar aman menerima Map<String, dynamic> maupun List<dynamic>
+  
   factory PremierLeagueModel.fromJson(dynamic json) {
     if (json is List) {
       return PremierLeagueModel(
@@ -43,7 +43,7 @@ class Team {
     required this.strDescriptionEn,
   });
 
-  // Getter alias untuk fleksibilitas pemanggilan di UI
+  
   String get id => idTeam;
   String get title => strTeam;
   String get subtitle => strStadium;
@@ -51,31 +51,30 @@ class Team {
   String get description => strDescriptionEn;
 
   factory Team.fromJson(Map<String, dynamic> json) {
-    // 1. Parsing ID Tim
+
     String id = json["idTeam"]?.toString() ??
         json["dealID"]?.toString() ??
         json["id"]?.toString() ??
         "";
 
-    // 2. Parsing Nama Tim
     String name = json["strTeam"] ??
         json["title"] ??
         json["name"] ??
         "Tanpa Nama";
 
-    // 3. Parsing Stadion / Keterangan
+   
     String stadium = json["strStadium"] ??
         (json["salePrice"] != null
             ? "Sale: \$${json['salePrice']} (Normal: \$${json['normalPrice'] ?? '-'})"
             : (json["subtitle"] ?? ""));
 
-    // 4. Parsing Logo / Badge Tim
+   
     String badge = json["strBadge"] ??
         json["thumb"] ??
         json["image"] ??
         "";
 
-    // 5. Parsing Deskripsi Tim
+  
     String desc = json["strDescriptionEn"] ??
         (json["steamRatingText"] != null
             ? "Rating: ${json['steamRatingText']}"
