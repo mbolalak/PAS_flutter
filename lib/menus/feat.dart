@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/feat_controller.dart';
 
+typedef FeatPage = featpage;
+
 class featpage extends StatelessWidget {
   featpage({super.key});
 
