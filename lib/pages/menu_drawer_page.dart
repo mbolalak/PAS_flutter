@@ -9,20 +9,17 @@ import '../menus/profile.dart';
 class MenuDrawerPage extends StatelessWidget {
   MenuDrawerPage({super.key});
 
-  // 1. Inject controller sekali di halaman shell utama
   final MenuDrawerController drawerCtr = Get.put(MenuDrawerController());
 
-  // 2. Daftar halaman konten yang akan ditampilkan di body
   final List<Widget> pages = [
     HomePage(),
-    FeatPage(),
+    featpage(),
     const ProfilePage(),
   ];
 
-  // 3. Judul AppBar yang otomatis berganti mengikuti halaman aktif
   final List<String> titles = [
     'Sistem Kasir & MTK',
-    'Premier League Teams',
+    'Daftar Tim',
     'Profil Siswa',
   ];
 
@@ -30,7 +27,6 @@ class MenuDrawerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        // APPBAR DINAMIS
         appBar: AppBar(
           backgroundColor: const Color(0xFF171A21),
           iconTheme: const IconThemeData(color: Colors.white),
@@ -43,11 +39,7 @@ class MenuDrawerPage extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-
-        // DRAWER SAMPING
         drawer: const MenuDrawer(),
-
-        // BODY DINAMIS (berganti sesuai menu drawer yang ditekan)
         body: pages[drawerCtr.selectedIndex.value],
       ),
     );

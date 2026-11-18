@@ -8,7 +8,6 @@ class MenuDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Ambil controller yang sudah di-put oleh MenuDrawerPage
     final drawerCtr = Get.find<MenuDrawerController>();
 
     return Drawer(
@@ -41,14 +40,14 @@ class MenuDrawer extends StatelessWidget {
                 selectedTileColor: const Color(0xFF2A475E),
                 onTap: () {
                   drawerCtr.selectedIndex.value = 0;
-                  Get.back(); // Menutup drawer setelah diklik
+                  Get.back();
                 },
               )),
 
-          // Menu 1: Game Deals / Feat API
+          // Menu 1: Daftar Tim (Feat API)
           Obx(() => ListTile(
-                leading: const Icon(Icons.local_offer, color: Colors.white),
-                title: const Text("Game Deals", style: TextStyle(color: Colors.white)),
+                leading: const Icon(Icons.sports_soccer, color: Colors.white),
+                title: const Text("Daftar Tim", style: TextStyle(color: Colors.white)),
                 selected: drawerCtr.selectedIndex.value == 1,
                 selectedTileColor: const Color(0xFF2A475E),
                 onTap: () {
@@ -76,8 +75,8 @@ class MenuDrawer extends StatelessWidget {
             leading: const Icon(Icons.logout, color: Colors.redAccent),
             title: const Text("Logout", style: TextStyle(color: Colors.redAccent)),
             onTap: () {
-              Get.back(); // Tutup drawer
-              Get.offAllNamed(Routes.login); // Reset stack & kembali ke Login
+              Get.back();
+              Get.offAllNamed(Routes.login);
             },
           ),
         ],
